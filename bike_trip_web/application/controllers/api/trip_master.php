@@ -21,16 +21,19 @@ require(APPPATH.'libraries/REST_Controller.php');
             
 //            $this->response($result, REST_Controller::HTTP_OK);
              
-//                  if(!empty($result)){
-//                //set the response and exit
-//                $this->response($users, REST_Controller::HTTP_OK);
-//            }else{
-//                //set the response and exit
-//                $this->response([
-//                    'status' => FALSE,
-//                    'message' => 'No user were found.'
-//                ], REST_Controller::HTTP_NOT_FOUND);
-//            }
+                  if($result['status']){
+                //set the response and exit
+                $this->response([
+                    'status' => $result['status'],
+                    'trip_code' => $result['trip_cade']
+                ], REST_Controller::HTTP_OK);
+            }else{
+                //set the response and exit
+                $this->response([
+                    'status' => FALSE,
+                    'message' => 'No user were found.'
+                ], REST_Controller::HTTP_NOT_FOUND);
+            }
             
         }
  

@@ -16,11 +16,12 @@ class Trip extends CI_Model {
             $sql_value .= "'{$value}', ";
         }
         $sql_fields .= "trip_code,active";
-        $sql_value .= "'".$this->get_trip_code($arrayObj['trip_type_code'])."'," . "'Y'";
+        $trip_code = $this->get_trip_code($arrayObj['trip_type_code']);
+        $sql_value .="'".$trip_code."'," . "'Y'";
         $sql = "INSERT INTO {$this->table_name} ({$sql_fields}) VALUES ({$sql_value})";
 //         echo $sql;
          $result = $this->db->query($sql);
-          return $result;
+          return array('status'=>$result,'trip_cade'=>$trip_code);
     }
     function get_trip_code($ty_code){
 //        $arrayObj['trip_type_code']=1;
